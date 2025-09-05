@@ -3,6 +3,26 @@ from turtle import Turtle
 t= Turtle()
 t.speed(1)
 
+def obter_distancia():
+        resposta=int(input('Distancia para andar: '))
+        return resposta
+
+def rotacionar_turtle(turtle):
+    rotacao = input('Para qual direção deseja rotacionar? (e) esquerda, (d) direita: ').lower()
+    if rotacao == 'e':
+        rotacionar_esquerda(turtle)
+    elif rotacao == 'd':
+        rotacionar_direita(turtle)
+    print('Movimento concluído.')
+
+def rotacionar_direita(turtle):
+    angulo = int(input('Quantos graus deseja rotacionar? '))
+    t.right(angulo)
+
+def rotacionar_esquerda(turtle):
+    angulo = int(input('Quantos graus deseja rotacionar? '))
+    t.left(angulo)
+
 while True:
     direcao = input('Para qual direção deseja ir? (f) frente, (t) trás(s) sair: ').lower()
     if direcao == 's':
@@ -12,24 +32,15 @@ while True:
         print('Direção inválida. Tente novamente.')
         continue
     if direcao == 'f':
-        distancia = int(input('Distancia para andar: '))
+        distancia = obter_distancia()
+        rotacionar_turtle(t)
         t.forward(distancia)
 
     elif direcao == 't':
-        distancia = int(input('Distancia para andar: '))
+        distancia = obter_distancia()
+        rotacionar_turtle(t)
         t.backward(distancia)
-    
-    rotacao = input('Para qual direção deseja rotacionar? (e) esquerda, (d) direita: ').lower()
-    if rotacao not in ['e', 'd']:
-        print('Rotação inválida. Tente novamente.')
-        continue
-    angulo = int(input('Quantos graus deseja rotacionar? '))
-    if rotacao == 'e':
-        t.left(angulo)  
-    elif rotacao == 'd':
-        t.right(angulo)
-    print('Movimento concluído.')
-
+        
     if input('Deseja continuar? (s/n): ').lower() != 's':
         print('Saindo do programa...')
         break
